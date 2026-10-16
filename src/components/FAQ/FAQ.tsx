@@ -95,45 +95,6 @@ export default function FAQ() {
                             );
                         })}
                     </div>
-
-                    <aside
-                        className="faq-aside"
-                        ref={asideRef}
-                        data-reveal
-                    >
-                        <span
-                            className="faq-aside__symbol"
-                            aria-hidden="true"
-                        >
-                            ?
-                        </span>
-
-                        <span className="faq-aside__eyebrow">
-                            ¿Necesitas más información?
-                        </span>
-
-                        <h3>Hablemos sobre tus objetivos.</h3>
-
-                        <p>
-                            Consulta tus dudas sobre las materias, la modalidad
-                            virtual y la organización de las sesiones.
-                        </p>
-
-                        <a
-                            className="button button--primary faq-aside__button"
-                            href={getWhatsAppLink(
-                                "Hola, profesor Emilio. Tengo algunas consultas sobre sus tutorías virtuales."
-                            )}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Consultar por WhatsApp
-                        </a>
-
-                        <span className="faq-aside__note">
-                            Atención personalizada
-                        </span>
-                    </aside>
                 </div>
             </div>
         </section>

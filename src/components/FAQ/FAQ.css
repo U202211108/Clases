@@ -256,3 +256,158 @@
 #preguntas-frecuentes {
     scroll-margin-top: 100px;
 }
+
+
+/* =========================================
+   RESPONSIVE FINAL — FAQ
+========================================= */
+
+.faq-section {
+  width: 100%;
+  min-width: 0;
+  padding-block: clamp(58px, 8vw, 100px);
+}
+
+.faq-container {
+  width: min(1100px, calc(100% - 48px));
+  min-width: 0;
+}
+
+.faq-heading,
+.faq-layout,
+.faq-list,
+.faq-aside {
+  min-width: 0;
+}
+
+.faq-heading h2 {
+  font-size: clamp(2.15rem, 5vw, 3.6rem);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.faq-heading > p {
+  overflow-wrap: anywhere;
+}
+
+.faq-layout {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+  gap: 30px;
+}
+
+.faq-item__question {
+  grid-template-columns: 28px minmax(0, 1fr) 32px;
+  gap: 12px;
+}
+
+.faq-item__text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+}
+
+.faq-item__answer {
+  min-width: 0;
+}
+
+.faq-item__answer p {
+  overflow-wrap: anywhere;
+}
+
+.faq-aside__button {
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: 800px) {
+  .faq-container {
+    width: calc(100% - 40px);
+  }
+
+  .faq-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .faq-aside {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-section {
+    padding-block: 56px;
+  }
+
+  .faq-container {
+    width: calc(100% - 32px);
+    gap: 28px;
+  }
+
+  .faq-heading h2 {
+    font-size: clamp(1.95rem, 8.5vw, 2.35rem);
+  }
+
+  .faq-heading > p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  .faq-item__question {
+    grid-template-columns: 22px minmax(0, 1fr) 28px;
+    gap: 8px;
+    min-height: 68px;
+    padding-block: 13px;
+  }
+
+  .faq-item__number {
+    font-size: 0.95rem;
+  }
+
+  .faq-item__text {
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .faq-item__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .faq-item__answer {
+    padding: 0 0 18px 30px;
+  }
+
+  .faq-item__answer p {
+    font-size: 0.86rem;
+    line-height: 1.75;
+  }
+
+  .faq-aside {
+    padding: 23px 19px;
+  }
+
+  .faq-aside h3 {
+    font-size: 1.55rem;
+  }
+
+  .faq-aside__button {
+    width: 100%;
+    padding-inline: 12px;
+    line-height: 1.5;
+  }
+
+  .faq-aside__note {
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__icon {
+    transition: none;
+  }
+}

@@ -1,6 +1,11 @@
 
+/* =========================================
+   HERO — ESTILOS GENERALES
+========================================= */
+
 .hero {
   position: relative;
+  width: 100%;
   overflow: hidden;
   padding: 72px 0 80px;
   background:
@@ -22,6 +27,10 @@
   margin: 0 auto;
 }
 
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
 .hero__content {
   position: relative;
   z-index: 1;
@@ -38,6 +47,7 @@
   font-size: 0.73rem;
   font-weight: 700;
   letter-spacing: 0.12em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
@@ -56,6 +66,8 @@
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 1.02;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .hero__title > span {
@@ -70,7 +82,12 @@
   color: var(--color-muted);
   font-size: 1rem;
   line-height: 1.85;
+  overflow-wrap: anywhere;
 }
+
+/* =========================================
+   INFORMACIÓN DEL PROFESOR
+========================================= */
 
 .hero__teacher {
   display: flex;
@@ -100,6 +117,7 @@
 
 .hero__teacher > div {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 3px;
 }
@@ -115,6 +133,10 @@
   font-size: 0.78rem;
 }
 
+/* =========================================
+   BOTONES DEL HERO
+========================================= */
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -123,15 +145,77 @@
 }
 
 .hero__actions .button {
+  display: inline-flex;
+  min-width: 0;
   min-height: 52px;
-  padding-inline: 18px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 18px;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
 }
 
 .hero__actions .button svg {
+  display: block;
   width: 18px;
   height: 18px;
-  flex-shrink: 0;
+  flex: 0 0 18px;
+  margin: 0;
 }
+
+/* Botón para ver las materias */
+
+.hero__actions .hero__button-subjects,
+.hero__actions > a.hero__button-subjects {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 14px 18px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hero__actions .hero__button-subjects .hero__button-icon,
+.hero__actions > a.hero__button-subjects > svg {
+  display: block;
+  position: static;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  flex: 0 0 18px;
+  margin: 0;
+  transform: none;
+}
+
+.hero__actions .hero__button-subjects span,
+.hero__actions > a.hero__button-subjects > span {
+  display: inline-block;
+  position: static;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  transform: none;
+}
+
+.hero__actions .button--outline {
+  color: var(--color-forest);
+  border: 1px solid var(--color-border);
+  background: transparent;
+}
+
+.hero__actions .button--outline:hover {
+  border-color: var(--color-olive);
+  background: var(--color-surface);
+}
+
+/* =========================================
+   ENLACE PARA DESPLAZARSE
+========================================= */
 
 .hero__scroll {
   display: inline-flex;
@@ -165,24 +249,15 @@
   height: 15px;
 }
 
-/* Fotografía del profesor */
+/* =========================================
+   FOTOGRAFÍA DEL PROFESOR
+========================================= */
 
 .hero__visual {
   position: relative;
   width: 100%;
   max-width: 410px;
-  justify-self: end;
-  padding: 0;
-}
-
-
-
-/* Fotografía del profesor: elimina las zonas externas del encuadre */
-
-.hero__visual {
-  position: relative;
-  width: 100%;
-  max-width: 410px;
+  min-width: 0;
   justify-self: end;
   padding: 0;
 }
@@ -194,32 +269,80 @@
   width: 100%;
   aspect-ratio: 4 / 5;
   border: 1px solid rgba(25, 61, 45, 0.12);
-  border-radius: 150px 150px 8px 8px;
+  border-radius: 150px 150px 7px 7px;
   background: #e8e4dc;
   box-shadow: 0 22px 60px rgba(25, 61, 45, 0.1);
 }
 
+/*
+  La imagen llena el marco.
+  No se amplía artificialmente con scale().
+*/
+
 .hero__image {
   position: absolute;
   inset: 0;
+  z-index: -1;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  /*
-   * Amplía la imagen para recortar las barras negras
-   * que aparecen en la captura de WhatsApp.
-   */
-  object-position: center center;
-  transform: scale(1.3);
+  object-position: center 20%;
+  transform: none;
+  background: #e8e4dc;
 }
 
-/* Oculta la etiqueta superpuesta mientras ajustamos la fotografía */
+/* =========================================
+   DEGRADADO Y TEXTO SOBRE LA FOTOGRAFÍA
+========================================= */
 
 .hero__image-caption {
-  display: none;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 48px 23px 19px;
+  background: linear-gradient(
+    to top,
+    rgba(17, 43, 32, 0.98) 0%,
+    rgba(17, 43, 32, 0.88) 30%,
+    rgba(17, 43, 32, 0.54) 58%,
+    rgba(17, 43, 32, 0.15) 82%,
+    transparent 100%
+  );
 }
+
+.hero__caption-label {
+  color: var(--color-copper-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.hero__image-caption strong {
+  color: #fffefa;
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.hero__caption-subtitle {
+  color: rgba(255, 254, 250, 0.92);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   ELEMENTOS DECORATIVOS
+========================================= */
 
 .hero__decor {
   display: none;
@@ -237,81 +360,6 @@
   pointer-events: none;
 }
 
-@media (max-width: 760px) {
-  .hero__visual {
-    width: min(100%, 390px);
-    justify-self: center;
-  }
-
-  .hero__image-frame {
-    aspect-ratio: 4 / 4.5;
-    border-radius: 120px 120px 8px 8px;
-  }
-
-  .hero__image {
-    object-position: center center;
-    transform: scale(1.3);
-  }
-}
-
-/* Pie de foto discreto, sin tapar el rostro */
-
-.hero__image-caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 40px 24px 20px;
-  background: linear-gradient(
-    to top,
-    rgba(17, 43, 32, 0.9),
-    rgba(17, 43, 32, 0.45) 65%,
-    transparent
-  );
-}
-
-.hero__caption-label {
-  color: var(--color-copper-light);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.hero__image-caption strong {
-  color: #fffefa;
-  font-family: var(--font-heading);
-  font-size: 1.65rem;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
-.hero__caption-subtitle {
-  color: rgba(255, 254, 250, 0.82);
-  font-size: 0.78rem;
-}
-
-/* Elementos decorativos secundarios */
-
-.hero__decor {
-  display: none;
-}
-
-.hero__circle {
-  position: absolute;
-  z-index: -1;
-  top: -32px;
-  right: -32px;
-  width: 110px;
-  height: 110px;
-  border: 1px solid rgba(184, 118, 80, 0.35);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
 .hero__bottom-line {
   position: absolute;
   right: 0;
@@ -320,6 +368,10 @@
   height: 1px;
   background: var(--color-border);
 }
+
+/* =========================================
+   TABLET Y PORTÁTILES PEQUEÑOS
+========================================= */
 
 @media (max-width: 1050px) {
   .hero__container {
@@ -337,87 +389,192 @@
   }
 }
 
+/* =========================================
+   TABLETAS VERTICALES Y CELULARES
+========================================= */
+
 @media (max-width: 760px) {
   .hero {
-    padding: 52px 0 62px;
+    padding: 48px 0 60px;
   }
 
   .hero__container {
-    width: calc(100% - 40px);
+    width: calc(100% - 36px);
     min-height: auto;
     grid-template-columns: minmax(0, 1fr);
-    gap: 38px;
+    gap: 32px;
+  }
+
+  .hero__content {
+    padding: 0;
   }
 
   .hero__eyebrow {
+    gap: 9px;
     margin-bottom: 22px;
     font-size: 0.66rem;
+    letter-spacing: 0.09em;
   }
 
   .hero__title {
-    font-size: clamp(3.3rem, 12vw, 4.7rem);
+    margin-bottom: 20px;
+    font-size: clamp(3rem, 9.5vw, 4.2rem);
+    line-height: 1.07;
+    letter-spacing: -0.045em;
   }
 
   .hero__description {
+    margin-bottom: 23px;
     font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .hero__teacher {
+    gap: 10px;
+    margin-bottom: 24px;
   }
 
   .hero__actions {
     align-items: stretch;
+    gap: 10px;
   }
 
-  .hero__actions .button {
-    flex: 1 1 190px;
+  .hero__actions .button,
+  .hero__actions > a.hero__button-subjects {
+    width: 100%;
+    min-height: 50px;
+    justify-content: center;
+  }
+
+  .hero__scroll {
+    margin-top: 25px;
   }
 
   .hero__visual {
     width: min(100%, 390px);
+    max-width: 390px;
     justify-self: center;
   }
 
   .hero__image-frame {
-    aspect-ratio: 4 / 4.5;
-    border-radius: 150px 150px 8px 8px;
+    aspect-ratio: 4 / 5;
+    border-radius: 115px 115px 7px 7px;
   }
 
   .hero__image {
-    object-position: center 20%;
+    object-fit: cover;
+    object-position: center 18%;
+    transform: none;
+  }
+
+  .hero__image-caption {
+    gap: 4px;
+    padding: 48px 20px 18px;
+  }
+
+  .hero__image-caption strong {
+    font-size: 1.45rem;
   }
 
   .hero__circle {
-    top: -18px;
-    right: -12px;
+    top: -16px;
+    right: -10px;
     width: 76px;
     height: 76px;
   }
 }
 
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
 @media (max-width: 420px) {
+  .hero {
+    padding: 38px 0 48px;
+  }
+
   .hero__container {
-    width: calc(100% - 36px);
+    width: calc(100% - 32px);
+    gap: 27px;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.61rem;
+    letter-spacing: 0.07em;
   }
 
   .hero__title {
-    font-size: clamp(3rem, 12.5vw, 3.6rem);
+    font-size: clamp(2.65rem, 10.5vw, 3.4rem);
+    line-height: 1.08;
+  }
+
+  .hero__description {
+    font-size: 0.9rem;
+  }
+
+  .hero__teacher strong {
+    font-size: 0.83rem;
+  }
+
+  .hero__teacher > div > span {
+    font-size: 0.72rem;
   }
 
   .hero__actions {
     flex-direction: column;
+    align-items: stretch;
   }
 
-  .hero__actions .button {
+  .hero__actions .button,
+  .hero__actions > a.hero__button-subjects {
     width: 100%;
-    flex: auto;
+    padding: 13px 14px;
+    white-space: normal;
+  }
+
+  .hero__visual {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .hero__image-frame {
+    aspect-ratio: 4 / 5;
+    border-radius: 95px 95px 6px 6px;
+  }
+
+  .hero__image {
+    object-position: center 18%;
+    transform: none;
   }
 
   .hero__image-caption {
-    padding: 34px 18px 17px;
+    gap: 3px;
+    padding: 43px 17px 15px;
+  }
+
+  .hero__caption-label {
+    font-size: 0.59rem;
   }
 
   .hero__image-caption strong {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .hero__caption-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .hero__circle {
+    top: -11px;
+    right: -7px;
+    width: 62px;
+    height: 62px;
   }
 }
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .hero__scroll {
@@ -426,122 +583,61 @@
 }
 
 
-/* Alineación de los botones principales del Hero */
+/* CORRECCIÓN: ELIMINAR EL FONDO NEGRO DEL HERO */
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
+.hero__image-frame {
+  background: #e8e4dc !important;
+  overflow: hidden;
 }
 
-.hero__actions .button {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 52px;
-  line-height: 1.2;
-  white-space: nowrap;
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  transform: none !important;
+  background: #e8e4dc !important;
 }
 
-.hero__actions .button svg {
-  display: block;
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  margin: 0;
+/* Degradado verde solo en la parte inferior de la fotografía */
+.hero__image-caption {
+  display: flex !important;
+  background: linear-gradient(
+    to top,
+    rgba(17, 43, 32, 0.98) 0%,
+    rgba(17, 43, 32, 0.78) 35%,
+    rgba(17, 43, 32, 0.25) 75%,
+    transparent 100%
+  ) !important;
 }
 
-.hero__actions .button--outline {
-  color: var(--color-forest);
-  border: 1px solid var(--color-border);
-  background: transparent;
-}
-
-.hero__actions .button--outline:hover {
-  border-color: var(--color-olive);
-  background: var(--color-surface);
-}
-
-@media (max-width: 420px) {
-  .hero__actions {
-    align-items: stretch;
-    gap: 10px;
+@media (max-width: 760px) {
+  .hero__visual {
+    width: min(100%, 390px);
+    max-width: 390px;
+    margin-inline: auto;
   }
 
-  .hero__actions .button {
-    width: 100%;
-    white-space: normal;
+  .hero__image-frame {
+    aspect-ratio: 4 / 5;
+    border-radius: 110px 110px 7px 7px;
+    background: #e8e4dc !important;
+  }
+
+  .hero__image {
+    object-fit: cover;
+    object-position: center 18%;
+    transform: none !important;
   }
 }
 
-
-.hero__actions .hero__button-subjects {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 14px 18px;
-  line-height: 1;
-  text-align: center;
-}
-
-.hero__actions .hero__button-subjects .hero__button-icon {
-  display: block;
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  margin: 0;
-}
-
-.hero__actions .hero__button-subjects span {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  line-height: 1.2;
-}
-
-
-.hero__actions > a.hero__button-subjects {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 9px !important;
-  height: 52px;
-  min-height: 52px;
-  padding: 0 18px !important;
-  line-height: normal !important;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.hero__actions > a.hero__button-subjects > svg {
-  display: block !important;
-  position: static !important;
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px;
-  flex: 0 0 18px !important;
-  margin: 0 !important;
-  transform: none !important;
-}
-
-.hero__actions > a.hero__button-subjects > span {
-  display: block !important;
-  position: static !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1.2 !important;
-  transform: none !important;
-}
-
 @media (max-width: 420px) {
-  .hero__actions > a.hero__button-subjects {
-    width: 100%;
+  .hero__image-frame {
+    aspect-ratio: 4 / 5;
+    border-radius: 90px 90px 6px 6px;
+  }
+
+  .hero__image {
+    object-position: center 18%;
   }
 }
