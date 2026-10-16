@@ -1,475 +1,642 @@
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
-
-/* ========================================
-   1. VARIABLES Y CONFIGURACIÓN GLOBAL
-======================================== */
-
-:root {
-  font-family: "DM Sans", sans-serif;
-  color: #282a25;
-  background: #f6f1e8;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --color-cream: #f6f1e8;
-  --color-surface: #eeece2;
-  --color-white: #fffefa;
-  --color-forest: #183d30;
-  --color-forest-dark: #112b20;
-  --color-olive: #657b3b;
-  --color-copper: #b8794b;
-  --color-copper-light: #e4c3a8;
-  --color-lime: #c7fe38;
-  --color-text: #282a25;
-  --color-muted: #696b62;
-  --color-border: #dedbce;
-
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "DM Sans", sans-serif;
-
-  --content-width: 1180px;
-  --page-gutter: clamp(20px, 5vw, 64px);
-
-  --section-space: clamp(76px, 9vw, 124px);
-
-  --radius-small: 6px;
-  --radius-medium: 14px;
-  --radius-large: 24px;
-
-  --shadow-soft: 0 12px 35px rgb(24 61 48 / 5%);
-  --shadow-hover: 0 22px 48px rgb(24 61 48 / 10%);
-
-  --transition-fast: 180ms ease;
-  --transition-normal: 280ms ease;
-}
-
-/* ========================================
-   2. REINICIO Y ELEMENTOS HTML
-======================================== */
+/* ==================================================
+   RESPONSIVE GLOBAL — AJUSTES PARA MÓVILES Y TABLETAS
+   Añadir al final de src/App.css
+================================================== */
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
-
-body {
-  min-width: 320px;
-  margin: 0;
-  color: var(--color-text);
-  background:
-    radial-gradient(
-      ellipse at 8% 8%,
-      rgb(184 121 75 / 5%),
-      transparent 28%
-    ),
-    var(--color-cream);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
+    width: 100%;
+    max-width: 100%;
+    scroll-padding-top: 90px;
 }
 
 body,
-button,
-input,
-textarea,
-select {
-  font-family: var(--font-body);
+#root,
+.site-layout,
+.site-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
-button,
-input,
-textarea,
-select {
-  font-size: inherit;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  color: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+    overflow-x: clip;
 }
 
 img,
 svg {
-  display: block;
-  max-width: 100%;
+    max-width: 100%;
 }
 
-img {
-  height: auto;
-}
-
+button,
+a,
+p,
 h1,
 h2,
 h3,
 h4,
-p {
-  margin-top: 0;
+span {
+    overflow-wrap: break-word;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-}
-
-p {
-  color: var(--color-muted);
-}
-
-::selection {
-  color: var(--color-forest);
-  background: var(--color-lime);
-}
-
-#root,
-.site-layout {
-  min-height: 100vh;
-}
-
-.site-layout {
-  display: flex;
-  flex-direction: column;
-}
-
-.site-main {
-  flex: 1;
-  min-width: 0;
-  overflow: clip;
+.container,
+.section-shell,
+.faq-container {
+    width: min(1180px, calc(100% - 48px));
+    min-width: 0;
+    margin-inline: auto;
 }
 
 section[id] {
-  scroll-margin-top: 100px;
+    scroll-margin-top: 100px;
 }
 
-/* ========================================
-   3. CONTENEDORES Y SECCIONES
-======================================== */
-
-.container,
-.section-shell {
-  width: min(
-    var(--content-width),
-    calc(100% - var(--page-gutter) * 2)
-  );
-  margin-inline: auto;
+/* Evita que elementos con animación queden fuera de pantalla
+   cuando el observador no llega a activarse. */
+[data-reveal]:not(.is-visible) {
+    animation: none;
 }
 
-.section {
-  position: relative;
-  padding-block: var(--section-space);
+/* ==================================================
+   NAVEGACIÓN
+================================================== */
+
+.navbar {
+    z-index: 1000;
 }
 
-.section--white {
-  background: var(--color-white);
+.navbar__container {
+    min-width: 0;
 }
 
-.section--cream {
-  background: var(--color-cream);
+.navbar__brand {
+    min-width: 0;
 }
 
-.section--green {
-  color: var(--color-white);
-  background: var(--color-forest);
+.navbar__brand-text {
+    min-width: 0;
 }
 
-.section--green h1,
-.section--green h2,
-.section--green h3,
-.section--green h4 {
-  color: var(--color-white);
+.navbar__navigation {
+    min-width: 0;
 }
 
-.section--green p {
-  color: rgb(255 254 250 / 74%);
+@media (max-width: 850px) {
+    .navbar__container {
+        width: calc(100% - 36px);
+        min-height: 72px;
+    }
+
+    .navbar__navigation {
+        max-height: calc(100dvh - 73px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .navbar__links {
+        width: 100%;
+    }
+
+    .navbar__links li,
+    .navbar__link {
+        width: 100%;
+    }
+
+    .navbar__contact {
+        width: 100%;
+        align-self: stretch;
+    }
 }
 
-/* ========================================
-   4. ENCABEZADOS DE SECCIÓN
-======================================== */
+/* ==================================================
+   HERO
+================================================== */
 
-.section-heading {
-  max-width: 720px;
-  margin: 0 0 clamp(36px, 5vw, 58px);
+.hero {
+    overflow: clip;
 }
 
-.section-heading .eyebrow {
-  margin-bottom: 20px;
+.hero__container {
+    min-width: 0;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-  color: var(--color-copper);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  line-height: 1.5;
-  text-transform: uppercase;
+.hero__content,
+.hero__visual {
+    min-width: 0;
 }
 
-.eyebrow::before {
-  width: 28px;
-  height: 1px;
-  flex-shrink: 0;
-  background: currentColor;
-  content: "";
+.hero__title {
+    max-width: 100%;
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    overflow-wrap: normal;
 }
 
-.section-heading h2 {
-  margin-bottom: 20px;
-  color: var(--color-forest);
-  font-size: clamp(2.2rem, 4.5vw, 3.7rem);
-  text-wrap: balance;
+.hero__description {
+    max-width: 100%;
 }
 
-.heading-accent {
-  color: var(--color-copper);
-  font-style: italic;
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-.section-heading > p {
-  max-width: 60ch;
-  margin-bottom: 0;
-  font-size: 1rem;
-  line-height: 1.9;
-  text-wrap: pretty;
+.hero__actions > .button {
+    min-width: 0;
+    max-width: 100%;
 }
 
-/* ========================================
-   5. BOTONES COMPARTIDOS
-======================================== */
-
-.button {
-  display: inline-flex;
-  min-height: 50px;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 13px 20px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-small);
-  cursor: pointer;
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  text-decoration: none;
-  transition:
-    transform var(--transition-fast),
-    background var(--transition-fast),
-    color var(--transition-fast),
-    border-color var(--transition-fast);
+.hero__image-frame {
+    width: 100%;
 }
 
-.button:hover {
-  transform: translateY(-2px);
+.hero__image {
+    max-width: none;
 }
 
-.button:active {
-  transform: scale(0.98);
+@media (max-width: 760px) {
+    .hero {
+        padding-block: 42px 56px;
+    }
+
+    .hero__container {
+        width: calc(100% - 36px);
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .hero__content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero__eyebrow {
+        max-width: 100%;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+    }
+
+    .hero__title {
+        margin-bottom: 20px;
+        font-size: clamp(2.9rem, 11vw, 4.4rem);
+        line-height: 1.04;
+    }
+
+    .hero__description {
+        font-size: 0.93rem;
+        line-height: 1.8;
+    }
+
+    .hero__actions {
+        align-items: stretch;
+    }
+
+    .hero__actions > .button {
+        flex: 1 1 100%;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .hero__visual {
+        width: min(100%, 390px);
+        justify-self: center;
+    }
+
+    .hero__image-frame {
+        aspect-ratio: 4 / 4.5;
+    }
 }
 
-.button svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.button--primary,
-.button-primary {
-  border-color: var(--color-forest);
-  color: var(--color-lime);
-  background: var(--color-forest);
-}
-
-.button--primary:hover,
-.button-primary:hover {
-  border-color: var(--color-forest-dark);
-  color: var(--color-white);
-  background: var(--color-forest-dark);
-}
-
-.button--outline,
-.button-secondary {
-  border-color: var(--color-border);
-  color: var(--color-forest);
-  background: transparent;
-}
-
-.button--outline:hover,
-.button-secondary:hover {
-  border-color: var(--color-olive);
-  background: var(--color-surface);
-}
-
-.button--light {
-  color: var(--color-forest);
-  background: var(--color-white);
-}
-
-.button--light:hover {
-  background: var(--color-surface);
-}
-
-/* ========================================
-   6. TARJETAS DE MATERIAS
-======================================== */
-
-.section--subjects .section-heading {
-  max-width: 760px;
-}
+/* ==================================================
+   MATERIAS Y DETALLES
+================================================== */
 
 .subject-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.subject-grid > * {
-  min-width: 0;
-  height: 100%;
+.subject-card {
+    min-width: 0;
+    height: 100%;
 }
 
-/* ========================================
-   7. ACCESIBILIDAD Y ANIMACIONES
-======================================== */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--color-copper);
-  outline-offset: 4px;
+.subject-card__content {
+    min-width: 0;
 }
 
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 600ms ease,
-    transform 600ms ease;
+.subject-card__link {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.subject-detail {
+    min-width: 0;
 }
 
-.subject-grid > [data-reveal]:nth-child(2) {
-  transition-delay: 80ms;
+.subject-detail-layout {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    min-width: 0;
 }
 
-.subject-grid > [data-reveal]:nth-child(3) {
-  transition-delay: 160ms;
+.subject-detail-visual,
+.subject-detail-content {
+    min-width: 0;
 }
 
-/* ========================================
-   8. TABLETAS
-======================================== */
-
-@media (max-width: 900px) {
-  :root {
-    --page-gutter: 28px;
-    --section-space: 84px;
-  }
-
-  .subject-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-
-  .section-heading h2 {
-    font-size: clamp(2.1rem, 5vw, 3.2rem);
-  }
+.subject-detail-content h2 {
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
 }
 
-/* ========================================
-   9. MÓVILES
-======================================== */
+.subject-topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.subject-topic-tags span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 850px) {
+    .subject-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .subject-detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .subject-detail-visual {
+        position: relative;
+        top: auto;
+        min-height: 260px;
+    }
+}
 
 @media (max-width: 600px) {
-  :root {
-    --page-gutter: 18px;
-    --section-space: 68px;
-  }
+    .subject-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
 
-  body {
-    font-size: 14px;
-  }
+    .subject-card {
+        min-height: 0;
+        padding: 24px 20px;
+    }
 
-  html {
-    scroll-padding-top: 82px;
-  }
+    .subject-card__top {
+        gap: 16px;
+    }
 
-  section[id] {
-    scroll-margin-top: 82px;
-  }
+    .subject-card__icon {
+        flex-shrink: 0;
+    }
 
-  .section-heading {
-    margin-bottom: 34px;
-  }
+    .subject-detail {
+        padding-block: 56px;
+    }
 
-  .section-heading h2 {
-    font-size: clamp(2rem, 9vw, 2.8rem);
-  }
+    .subject-detail-visual {
+        min-height: 230px;
+        padding: 20px;
+    }
 
-  .section-heading > p {
-    font-size: 0.94rem;
-  }
+    .subject-detail-content h2 {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+    }
 
-  .subject-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-  }
+    .subject-topics-note {
+        padding: 18px;
+    }
 
-  .button {
-    min-height: 48px;
-    padding: 12px 16px;
-  }
+    .premium-link {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
 }
 
-/* ========================================
-   10. MOVIMIENTO REDUCIDO
-======================================== */
+/* ==================================================
+   METODOLOGÍA
+================================================== */
+
+.method-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.method-card {
+    min-width: 0;
+}
+
+.method-card h3,
+.method-card p {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 850px) {
+    .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 22px;
+    }
+
+    .method-card {
+        padding-inline: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .method-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
+    }
+
+    .method-card h3 {
+        max-width: none;
+        font-size: 1.35rem;
+    }
+}
+
+/* ==================================================
+   SOBRE EL PROFESOR
+================================================== */
+
+.section-about {
+    min-width: 0;
+}
+
+.about-panel {
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: clamp(22px, 4vw, 48px);
+    width: 100%;
+    min-width: 0;
+    padding: clamp(24px, 5vw, 58px);
+}
+
+.about-content {
+    min-width: 0;
+}
+
+.about-content h2 {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+}
+
+.about-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about-tags span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 650px) {
+    .about-panel {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        padding: 26px 22px;
+    }
+
+    .about-mark {
+        width: 76px;
+        height: 76px;
+    }
+
+    .about-content h2 {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+    }
+
+    .about-content > p {
+        font-size: 0.93rem;
+        line-height: 1.8;
+    }
+
+    .about-tags {
+        gap: 8px;
+    }
+
+    .about-tags span {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ==================================================
+   PREGUNTAS FRECUENTES
+================================================== */
+
+.faq-section {
+    min-width: 0;
+}
+
+.faq-container {
+    gap: 34px;
+}
+
+.faq-layout {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+}
+
+.faq-list,
+.faq-aside {
+    min-width: 0;
+}
+
+.faq-item__question {
+    min-width: 0;
+}
+
+.faq-item__text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.faq-item__answer {
+    min-width: 0;
+}
+
+.faq-aside__button {
+    white-space: normal;
+    line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+    .faq-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .faq-aside {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-container {
+        width: calc(100% - 36px);
+        gap: 28px;
+    }
+
+    .faq-heading h2 {
+        font-size: clamp(2rem, 9vw, 2.5rem);
+    }
+
+    .faq-item__question {
+        grid-template-columns: 24px minmax(0, 1fr) 28px;
+        gap: 8px;
+        padding-block: 16px;
+    }
+
+    .faq-item__text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .faq-item__icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .faq-item__answer {
+        padding: 0 8px 20px 32px;
+    }
+
+    .faq-aside {
+        padding: 24px 20px;
+    }
+
+    .faq-aside h3 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ==================================================
+   CONTACTO
+================================================== */
+
+.contact-panel {
+    min-width: 0;
+    padding: clamp(28px, 6vw, 80px);
+}
+
+.contact-panel h2 {
+    font-size: clamp(2.2rem, 6vw, 4.7rem);
+    overflow-wrap: normal;
+}
+
+.contact-panel > p {
+    max-width: 100%;
+}
+
+.contact-panel .button-light {
+    max-width: 100%;
+    white-space: normal;
+}
+
+.contact-email {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+    .contact-panel {
+        padding: 28px 22px;
+    }
+
+    .contact-panel h2 {
+        font-size: clamp(2.1rem, 9vw, 2.7rem);
+    }
+
+    .contact-panel .button-light {
+        width: 100%;
+        padding-inline: 14px;
+    }
+
+    .contact-email {
+        align-items: flex-start;
+        font-size: 0.8rem;
+    }
+}
+
+/* ==================================================
+   PIE DE PÁGINA
+================================================== */
+
+.footer-inner,
+.footer-bottom {
+    min-width: 0;
+}
+
+.footer-bottom > * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+    .footer-inner,
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* ==================================================
+   PANTALLAS MUY ESTRECHAS
+================================================== */
+
+@media (max-width: 360px) {
+    .container,
+    .section-shell,
+    .faq-container {
+        width: calc(100% - 28px);
+    }
+
+    .navbar__container {
+        width: calc(100% - 24px);
+    }
+
+    .navbar__brand {
+        gap: 7px;
+    }
+
+    .navbar__brand-name {
+        font-size: 0.9rem;
+    }
+
+    .navbar__brand-description {
+        font-size: 0.52rem;
+        letter-spacing: 0.05em;
+    }
+
+    .hero__title {
+        font-size: 2.65rem;
+    }
+
+    .about-panel,
+    .contact-panel {
+        padding-inline: 18px;
+    }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
+    .subject-card,
+    .hero__scroll,
+    .button,
+    .navbar__link,
+    .navbar__contact,
+    .faq-item__icon {
+        transition: none !important;
+    }
 }
