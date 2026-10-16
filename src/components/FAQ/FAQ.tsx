@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { site } from "../../data/site";
-import { getWhatsAppLink } from "../../utils/contact";
 import { useReveal } from "../../hooks/useReveal";
 import "./FAQ.css";
 
@@ -10,7 +9,6 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const headingRef = useReveal<HTMLDivElement>();
     const listRef = useReveal<HTMLDivElement>();
-    const asideRef = useReveal<HTMLDivElement>();
 
     return (
         <section
