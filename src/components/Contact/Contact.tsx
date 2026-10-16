@@ -42,10 +42,6 @@ Saludos.`;
         emailBody
     )}`;
 
-    const mailtoUrl = `mailto:${site.email}?subject=${encodeURIComponent(
-        emailSubject
-    )}&body=${encodeURIComponent(emailBody)}`;
-
     return (
         <section
             className="section section-contact"
