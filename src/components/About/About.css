@@ -1,0 +1,138 @@
+
+.section-about {
+  background: var(--color-surface);
+}
+
+.about-panel {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 45px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 58px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+}
+
+.about-mark {
+  display: grid;
+  width: 120px;
+  height: 120px;
+  place-items: center;
+  color: var(--color-lime);
+  background: var(--color-forest);
+  border-radius: 50%;
+}
+
+.about-content h2 {
+  margin: 15px 0 18px;
+}
+
+.about-content > p {
+  max-width: 650px;
+  color: var(--color-muted);
+  line-height: 1.9;
+}
+
+.about-content .about-intro {
+  color: var(--color-forest);
+  font-weight: 700;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.about-tags span {
+  padding: 9px 12px;
+  color: var(--color-forest);
+  border: 1px solid var(--color-border);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 650px) {
+  .about-panel {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px;
+  }
+
+  .about-mark {
+    width: 86px;
+    height: 86px;
+  }
+}
+
+
+.about-panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(30px, 6vw, 66px);
+  gap: clamp(28px, 5vw, 58px);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgb(184 121 75 / 8%),
+      transparent 36%
+    ),
+    var(--color-cream);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.about-mark {
+  width: 118px;
+  height: 118px;
+  color: var(--color-lime);
+  background: var(--color-forest);
+  border-radius: 3px;
+  box-shadow: 10px 10px 0 rgb(184 121 75 / 16%);
+}
+
+.about-content h2 {
+  margin-block: 18px;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  letter-spacing: -0.04em;
+}
+
+.about-content .about-intro {
+  margin-top: 0;
+  color: var(--color-olive);
+  font-size: 1rem;
+}
+
+.about-content > p:not(.about-intro) {
+  max-width: 60ch;
+  line-height: 1.95;
+}
+
+.about-tags {
+  gap: 9px;
+}
+
+.about-tags span {
+  background: rgb(255 255 255 / 35%);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.about-tags span:hover {
+  background: white;
+  border-color: var(--color-copper);
+}
+
+@media (max-width: 650px) {
+  .about-panel {
+    padding: 28px 24px;
+  }
+
+  .about-mark {
+    width: 88px;
+    height: 88px;
+  }
+}
