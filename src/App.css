@@ -157,6 +157,14 @@ section[id] {
   background: var(--color-surface);
 }
 
+
+/* Contacto: espaciado independiente del resto de secciones */
+.section.section-contact {
+  padding-block: 24px 30px;
+  min-height: 0;
+}
+
+
 .section-methodology {
   background: var(--color-cream);
 }
@@ -801,67 +809,26 @@ section[id] {
   text-align: center;
 }
 
+
 /* =========================================
    10. CONTACTO
+   El diseño visual está en Contact.css
 ========================================= */
 
-.contact-panel {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: clamp(30px, 7vw, 80px);
-  color: var(--color-cream);
-  background: var(--color-forest);
-  box-shadow: var(--shadow-soft);
+.section-contact .contact-shell {
+  width: min(900px, calc(100% - 36px));
+  margin-inline: auto;
+  min-height: 0;
 }
 
-.contact-panel > * {
-  position: relative;
-  z-index: 1;
+.section-contact .contact-panel {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.contact-panel .eyebrow {
-  color: var(--color-lime);
-}
-
-.contact-panel h2 {
-  max-width: 680px;
-  margin-top: 18px;
-  color: var(--color-white);
-  font-size: clamp(2.3rem, 5.5vw, 4.5rem);
-  letter-spacing: -0.04em;
-}
-
-.contact-panel > p {
-  max-width: 58ch;
-  color: #e1e7dd;
-  line-height: 1.85;
-}
-
-.button-light {
-  display: inline-flex;
-  min-height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 20px;
-  color: var(--color-forest);
-  background: var(--color-lime);
-  font-weight: 700;
-  text-align: center;
-}
-
-.contact-email {
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  align-items: center;
-  gap: 9px;
-  margin-top: 22px;
-  color: #e1e7dd;
-  font-size: 0.88rem;
-  overflow-wrap: anywhere;
-}
 
 /* =========================================
    11. FOOTER
@@ -1292,5 +1259,612 @@ button:focus-visible {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+}
+
+
+/* =========================================
+   PÁGINA DE DETALLE DE MATERIA
+========================================= */
+
+.subject-page {
+  min-height: 70vh;
+  padding: 40px 0 80px;
+  background: var(--color-cream);
+}
+
+.subject-page__container {
+  width: min(1180px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.subject-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 10px 0;
+  border: 0;
+  color: var(--color-forest);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.subject-page__back:hover {
+  color: var(--color-copper);
+}
+
+.subject-page__back span {
+  font-size: 1.3rem;
+}
+
+.subject-page__title {
+  margin: 0 0 20px;
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* El detalle se integra en la nueva página */
+
+.subject-page .subject-detail {
+  min-height: auto;
+  padding: 20px 0 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.subject-page .subject-detail-layout {
+  width: 100%;
+  max-width: none;
+}
+
+@media (max-width: 600px) {
+  .subject-page {
+    padding: 25px 0 50px;
+  }
+
+  .subject-page__container {
+    width: calc(100% - 32px);
+  }
+
+  .subject-page__back {
+    margin-bottom: 20px;
+  }
+
+  .subject-page .subject-detail {
+    padding-top: 12px;
+  }
+}
+
+
+/* =====================================================
+   EXPERIENCIA PREMIUM — PÁGINA DE MATERIAS
+===================================================== */
+
+.subject-page {
+  --subject-page-forest: #193d2f;
+  --subject-page-copper: #b87650;
+  --subject-page-cream: #f8f6ef;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 75vh;
+  padding: clamp(28px, 5vw, 58px) 0 90px;
+  overflow: clip;
+  color: var(--subject-page-forest);
+  background:
+    radial-gradient(
+      ellipse at 92% 4%,
+      rgb(184 118 80 / 12%),
+      transparent 27%
+    ),
+    radial-gradient(
+      ellipse at 5% 42%,
+      rgb(25 61 47 / 5%),
+      transparent 30%
+    ),
+    var(--subject-page-cream);
+  animation: subject-page-enter 650ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.subject-page::before {
+  position: absolute;
+  z-index: -1;
+  top: 90px;
+  right: -130px;
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgb(184 118 80 / 18%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  animation: subject-orbit 24s linear infinite;
+}
+
+.subject-page::after {
+  position: absolute;
+  z-index: -1;
+  top: 125px;
+  right: -95px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgb(25 61 47 / 10%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.subject-page__container {
+  position: relative;
+  width: min(1180px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+/* Navegación de regreso */
+
+.subject-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  margin-bottom: clamp(30px, 5vw, 58px);
+  padding: 8px 15px 8px 10px;
+  color: var(--subject-page-forest);
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid rgb(25 61 47 / 12%);
+  border-radius: 100px;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.subject-page__back > span:first-child {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: white;
+  background: var(--subject-page-forest);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  transition: transform 220ms ease;
+}
+
+.subject-page__back:hover {
+  background: white;
+  border-color: rgb(184 118 80 / 55%);
+  box-shadow: 0 8px 24px rgb(25 61 47 / 7%);
+  transform: translateY(-2px);
+}
+
+.subject-page__back:hover > span:first-child {
+  transform: translateX(-3px);
+}
+
+.subject-page__back:focus-visible {
+  outline: 3px solid var(--subject-page-copper);
+  outline-offset: 4px;
+}
+
+/* Cabecera editorial */
+
+.subject-page__intro {
+  max-width: 850px;
+  margin-bottom: clamp(38px, 6vw, 70px);
+  animation: subject-content-enter 750ms 80ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.subject-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 23px;
+  color: var(--subject-page-copper);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.7;
+}
+
+.subject-page__eyebrow::before {
+  width: 32px;
+  height: 1px;
+  flex: 0 0 32px;
+  background: var(--subject-page-copper);
+  content: "";
+}
+
+.subject-page__title {
+  margin: 0;
+  color: var(--subject-page-forest);
+  font-family: var(--font-heading);
+  font-size: clamp(2.7rem, 6.3vw, 5.25rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.subject-page__title span {
+  color: var(--subject-page-copper);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.subject-page__description {
+  max-width: 620px;
+  margin: 24px 0 0;
+  color: var(--color-muted);
+  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+  line-height: 1.9;
+}
+
+/* Entrada del contenido de la materia */
+
+.subject-page > .subject-page__container > .subject-detail {
+  animation: subject-content-enter 700ms 140ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.subject-page .subject-detail {
+  min-height: 0;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.subject-page .subject-detail-layout {
+  width: 100%;
+  max-width: none;
+  gap: clamp(35px, 6vw, 82px);
+}
+
+.subject-page .subject-detail-visual {
+  min-height: 440px;
+  border-radius: 4px;
+  box-shadow:
+    0 25px 70px rgb(25 61 47 / 13%),
+    0 3px 8px rgb(25 61 47 / 5%);
+}
+
+.subject-page .subject-detail-content {
+  animation: subject-content-enter 800ms 220ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.subject-page .subject-detail-content h2 {
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+}
+
+.subject-page .subject-detail-content h3 {
+  line-height: 1.5;
+}
+
+.subject-page .subject-detail-description {
+  max-width: 660px;
+  font-size: 0.96rem;
+  line-height: 1.95;
+}
+
+/* Bloques de temas con efecto sutil */
+
+.subject-page .subject-topics-note {
+  position: relative;
+  margin-block: 25px;
+  padding: clamp(20px, 3vw, 30px);
+  background: rgb(255 255 255 / 56%);
+  border: 1px solid rgb(25 61 47 / 10%);
+  border-left: 3px solid var(--subject-page-copper);
+  box-shadow: 0 8px 25px rgb(25 61 47 / 3%);
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    background 250ms ease;
+}
+
+.subject-page .subject-topics-note:hover {
+  background: rgb(255 255 255 / 85%);
+  box-shadow: 0 14px 35px rgb(25 61 47 / 7%);
+  transform: translateY(-3px);
+}
+
+.subject-page .subject-topics-note--university {
+  border-left-color: var(--subject-page-forest);
+}
+
+.subject-page .subject-topic-tags span {
+  border-radius: 3px;
+  transition:
+    transform 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.subject-page .subject-topic-tags span:hover {
+  transform: translateY(-2px);
+}
+
+/* Botón de contacto */
+
+.subject-page .premium-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  margin-top: 16px;
+  padding: 14px 20px;
+  color: white;
+  background: var(--subject-page-forest);
+  border: 1px solid var(--subject-page-forest);
+  border-radius: 3px;
+  text-decoration: none;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.subject-page .premium-link:hover {
+  color: white;
+  background: var(--subject-page-copper);
+  border-color: var(--subject-page-copper);
+  box-shadow: 0 10px 25px rgb(184 118 80 / 20%);
+  transform: translateY(-2px);
+}
+
+.subject-page .premium-link svg {
+  transition: transform 220ms ease;
+}
+
+.subject-page .premium-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Animaciones */
+
+@keyframes subject-page-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subject-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subject-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tabletas */
+
+@media (max-width: 850px) {
+  .subject-page {
+    padding-bottom: 65px;
+  }
+
+  .subject-page__container {
+    width: calc(100% - 40px);
+  }
+
+  .subject-page__intro {
+    margin-bottom: 38px;
+  }
+
+  .subject-page .subject-detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .subject-page .subject-detail-visual {
+    min-height: 300px;
+  }
+
+  .subject-page .subject-detail-svg {
+    width: 150px;
+  }
+}
+
+/* Celulares */
+
+@media (max-width: 600px) {
+  .subject-page {
+    padding: 25px 0 48px;
+  }
+
+  .subject-page::before {
+    top: 160px;
+    right: -220px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .subject-page::after {
+    top: 190px;
+    right: -185px;
+    width: 230px;
+    height: 230px;
+  }
+
+  .subject-page__container {
+    width: calc(100% - 32px);
+  }
+
+  .subject-page__back {
+    margin-bottom: 34px;
+  }
+
+  .subject-page__eyebrow {
+    margin-bottom: 18px;
+    font-size: 0.61rem;
+    letter-spacing: 0.1em;
+  }
+
+  .subject-page__eyebrow::before {
+    width: 23px;
+    flex-basis: 23px;
+  }
+
+  .subject-page__title {
+    font-size: clamp(2.5rem, 10vw, 3.6rem);
+    line-height: 1.08;
+  }
+
+  .subject-page__description {
+    margin-top: 17px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .subject-page__intro {
+    margin-bottom: 34px;
+  }
+
+  .subject-page .subject-detail-layout {
+    gap: 27px;
+  }
+
+  .subject-page .subject-detail-visual {
+    min-height: 260px;
+    padding: 22px;
+  }
+
+  .subject-page .subject-detail-svg {
+    width: 125px;
+  }
+
+  .subject-page .subject-detail-content h2 {
+    font-size: 2.6rem;
+  }
+
+  .subject-page .subject-topics-note {
+    padding: 19px;
+  }
+
+  .subject-page .premium-link {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Accesibilidad: reducir animaciones si el usuario lo solicita */
+
+@media (prefers-reduced-motion: reduce) {
+  .subject-page,
+  .subject-page::before,
+  .subject-page__intro,
+  .subject-page > .subject-page__container > .subject-detail,
+  .subject-page .subject-detail-content {
+    animation: none !important;
+  }
+
+  .subject-page *,
+  .subject-page *::before,
+  .subject-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
+/* =========================================
+   TRANSICIONES VISUALES ENTRE SECCIONES
+   Sobre mí · Preguntas frecuentes · Contacto
+========================================= */
+
+/* Sobre mí: fondo claro */
+.section-about {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-cream);
+}
+
+/* Preguntas frecuentes: fondo ligeramente más oscuro */
+.faq-section {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-surface);
+}
+
+/* Contacto: vuelve al fondo claro */
+.section-contact {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-cream);
+}
+
+/* Separador diagonal entre Sobre mí y FAQ */
+.section-about::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 24px;
+  background: var(--color-surface);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Separador diagonal entre FAQ y Contacto */
+.faq-section::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 24px;
+  background: var(--color-cream);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Evita que el contenido quede demasiado cerca de las transiciones */
+@media (max-width: 600px) {
+  .section-about,
+  .faq-section,
+  .section-contact {
+    overflow: clip;
+  }
+
+  .section-about::after,
+  .faq-section::after {
+    height: 16px;
   }
 }

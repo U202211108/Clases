@@ -1,27 +1,23 @@
 
 import { ArrowUpRight } from "lucide-react";
-import SubjectIcon from "../Subject/SubjectIcon";
+import SubjectIcon from "./SubjectIcon";
 import type { SubjectData } from "../../data/site";
 import "./Subject.css";
 
 interface SubjectProps {
     subject: SubjectData;
     index?: number;
+    onExplore: (subject: SubjectData) => void;
 }
 
 export default function Subject({
     subject,
     index = 0,
+    onExplore,
 }: SubjectProps) {
-    const subjectId = subject.id
-        .trim()
-        .toLocaleLowerCase("es")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
     return (
         <article
-            className={`subject-card subject-card--${subjectId}`}
+            className={`subject-card subject-card--${subject.id}`}
             data-reveal
             data-reveal-delay={Math.min(index + 1, 4).toString()}
         >
@@ -53,17 +49,18 @@ export default function Subject({
                 </p>
             </div>
 
-            <a
+            <button
+                type="button"
                 className="subject-card__link"
-                href={`#curso-${subjectId}`}
-                aria-label={`Conocer los contenidos de ${subject.title}`}
+                onClick={() => onExplore(subject)}
+                aria-label={`Explorar los contenidos de ${subject.title}`}
             >
                 <span>Explorar materia</span>
 
                 <span className="subject-card__link-icon">
                     <ArrowUpRight size={19} aria-hidden="true" />
                 </span>
-            </a>
+            </button>
         </article>
     );
 }

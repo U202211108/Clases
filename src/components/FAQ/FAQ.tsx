@@ -1,6 +1,14 @@
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import {
+    ArrowDownRight,
+    BookOpen,
+    GraduationCap,
+    Lightbulb,
+    Check,
+    Calculator,
+    Atom,
+} from "lucide-react";
 import { site } from "../../data/site";
 import { useReveal } from "../../hooks/useReveal";
 import "./FAQ.css";
@@ -9,6 +17,7 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const headingRef = useReveal<HTMLDivElement>();
     const listRef = useReveal<HTMLDivElement>();
+    const asideRef = useReveal<HTMLDivElement>();
 
     return (
         <section
@@ -60,7 +69,9 @@ export default function FAQ() {
                                             aria-expanded={isOpen}
                                             aria-controls={answerId}
                                             onClick={() =>
-                                                setOpenIndex(isOpen ? null : index)
+                                                setOpenIndex(
+                                                    isOpen ? null : index
+                                                )
                                             }
                                         >
                                             <span className="faq-item__number">
@@ -72,8 +83,8 @@ export default function FAQ() {
                                             </span>
 
                                             <span className="faq-item__icon">
-                                                <ChevronDown
-                                                    size={19}
+                                                <ArrowDownRight
+                                                    size={18}
                                                     aria-hidden="true"
                                                 />
                                             </span>
@@ -93,6 +104,135 @@ export default function FAQ() {
                             );
                         })}
                     </div>
+
+                    <aside
+                        className="faq-aside"
+                        ref={asideRef}
+                        data-reveal
+                        aria-labelledby="faq-aside-title"
+                    >
+                        <div className="faq-aside__orbit faq-aside__orbit--outer" />
+                        <div className="faq-aside__orbit faq-aside__orbit--inner" />
+
+                        <div className="faq-aside__top">
+                            <span className="faq-aside__symbol">
+                                <Lightbulb
+                                    size={23}
+                                    strokeWidth={1.5}
+                                    aria-hidden="true"
+                                />
+                            </span>
+
+                            <span className="faq-aside__label">
+                                TU CAMINO DE APRENDIZAJE
+                            </span>
+                        </div>
+
+                        <span className="faq-aside__eyebrow">
+                            APRENDER CON CONFIANZA
+                        </span>
+
+                        <h3 id="faq-aside-title">
+                            Comprender es el primer paso para{" "}
+                            <span>avanzar.</span>
+                        </h3>
+
+                        <p className="faq-aside__description">
+                            Cada estudiante tiene sus propios retos. La clave
+                            está en fortalecer las bases, comprender los
+                            conceptos y practicar con propósito.
+                        </p>
+
+                        <div className="faq-aside__divider">
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+
+                        <div className="faq-aside__path">
+                            <div className="faq-aside__path-item">
+                                <span className="faq-aside__path-icon">
+                                    <BookOpen size={19} aria-hidden="true" />
+                                </span>
+
+                                <div className="faq-aside__path-content">
+                                    <span className="faq-aside__path-kicker">
+                                        NIVEL ESCOLAR
+                                    </span>
+
+                                    <strong>Construye buenas bases</strong>
+
+                                    <p>
+                                        Refuerza los fundamentos y aprende a
+                                        resolver ejercicios paso a paso.
+                                    </p>
+                                </div>
+
+                                <Check
+                                    className="faq-aside__check"
+                                    size={16}
+                                    aria-hidden="true"
+                                />
+                            </div>
+
+                            <div className="faq-aside__path-item">
+                                <span className="faq-aside__path-icon">
+                                    <GraduationCap
+                                        size={20}
+                                        aria-hidden="true"
+                                    />
+                                </span>
+
+                                <div className="faq-aside__path-content">
+                                    <span className="faq-aside__path-kicker">
+                                        NIVEL UNIVERSITARIO
+                                    </span>
+
+                                    <strong>Profundiza y aplica</strong>
+
+                                    <p>
+                                        Comprende la teoría, desarrolla
+                                        problemas y practica para tus
+                                        evaluaciones.
+                                    </p>
+                                </div>
+
+                                <Check
+                                    className="faq-aside__check"
+                                    size={16}
+                                    aria-hidden="true"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="faq-aside__subjects">
+                            <span className="faq-aside__subjects-title">
+                                ÁREAS DE ENSEÑANZA
+                            </span>
+
+                            <div className="faq-aside__subject">
+                                <span className="faq-aside__subject-icon">
+                                    <Calculator
+                                        size={17}
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                                <span>Matemática</span>
+                            </div>
+
+                            <div className="faq-aside__subject">
+                                <span className="faq-aside__subject-icon">
+                                    <Atom size={18} aria-hidden="true" />
+                                </span>
+                                <span>Física</span>
+                            </div>
+                        </div>
+
+                        <div className="faq-aside__footer">
+                            <span className="faq-aside__footer-line" />
+                            <span>UN PASO A LA VEZ</span>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>

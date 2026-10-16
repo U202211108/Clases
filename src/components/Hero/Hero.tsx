@@ -28,19 +28,19 @@ export default function Hero() {
                         Tutorías académicas personalizadas
                     </span>
 
+
                     <h1 className="hero__title">
-                        Comprender.
+                        Aprende con claridad,
                         <br />
-                        Resolver.
-                        <br />
-                        <span>Avanzar.</span>
+                        <span>avanza con confianza.</span>
                     </h1>
 
                     <p className="hero__description">
-                        Aprende Matemáticas, Física y Química con explicaciones
-                        claras, acompañamiento personalizado y clases virtuales
-                        adaptadas a tu ritmo.
+                        Clases virtuales individuales de Matemática y Física para escolares
+                        y universitarios. Refuerza tus conocimientos, resuelve tus dudas y
+                        prepárate para tus evaluaciones.
                     </p>
+
 
                     <div className="hero__teacher">
                         <span className="hero__teacher-icon">

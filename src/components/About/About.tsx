@@ -18,19 +18,21 @@ export default function About() {
                         <h2>{site.name}</h2>
 
                         <p className="about-intro">
-                            Bachiller en Ingeniería Electrónica.
+                            Ingeniero Electrónico
                         </p>
 
                         <p>
-                            Brindo clases particulares de Matemática, Física
-                            y Química para estudiantes universitarios, con
-                            atención individual y modalidad virtual.
+                            Brindo clases virtuales individuales de Matemática
+                            y Física para escolares que necesitan reforzar sus
+                            aprendizajes y para estudiantes universitarios que
+                            llevan Matemática Básica, Cálculo 1, Cálculo 2,
+                            Física 1 o Física 2.
                         </p>
 
                         <div className="about-tags">
                             <span>Modalidad virtual</span>
                             <span>Atención individual</span>
-                            <span>Horarios coordinados</span>
+                            <span>Apoyo escolar y universitario</span>
                         </div>
                     </div>
                 </div>
